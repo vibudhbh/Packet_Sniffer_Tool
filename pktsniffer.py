@@ -1,13 +1,24 @@
+"""
+pktsniffer.py
+
+A Python-based packet sniffer that reads a .pcap file and displays
+Ethernet/IP/TCP/UDP/ICMP headers, with filtering options.
+"""
+
 import argparse
 import ipaddress
 from email.policy import strict
-
 from scapy.all import rdpcap
 from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP, TCP, UDP, ICMP
 
 def parse_arguments():
+    """
+        Parse command-line arguments using the argparse module.
 
+        Returns:
+            argparse.Namespace: The parsed command-line arguments.
+    """
     parser = argparse.ArgumentParser(description='Packet Sniffer that reads a PCAP file and filters or prints packet details')
     parser.add_argument('-r', '--read', required=True, help='Path to the PCAP file')
     parser.add_argument('-c', '--count', type=int, default=0, help='Number of packets to analyze')
@@ -22,7 +33,16 @@ def parse_arguments():
     return parser.parse_args()
 
 def packet_filter(pkt, args):
+    """
+        Check if a packet matches the filter criteria specified in args.
 
+        Args:
+            pkt (scapy.packet.Packet): The packet to examine.
+            args (argparse.Namespace): The parsed command-line arguments.
+
+        Returns:
+            bool: True if the packet satisfies all filters, False otherwise.
+    """
     #IP-only filter
     if args.ip and not pkt.haslayer(IP):
         return False
@@ -80,7 +100,14 @@ def packet_filter(pkt, args):
 
 
 def print_packet_summary(index, pkt):
+    """
+        Print a detailed summary of a packet, including Ethernet/IP
+        (and optionally TCP/UDP/ICMP) headers.
 
+        Args:
+            index (int): Sequential number of the packet (for display).
+            pkt (scapy.packet.Packet): The packet to summarize.
+    """
     print(f"\nPacket #{index}")
     print("-"*60)
     # Packet size
@@ -145,7 +172,10 @@ def print_packet_summary(index, pkt):
 
 
 def main():
-
+    """
+        The main function that orchestrates reading the pcap file, applying filters,
+        and printing packet summaries.
+    """
     #1 Get command line arguments
     args = parse_arguments()
 
