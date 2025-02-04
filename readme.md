@@ -11,6 +11,11 @@ Ensure you have Python 3 installed along with the required dependencies:
 ```sh
 pip install scapy
 ```
+Or
+
+```sh
+pip3 install scapy
+```
 
 ## How to Compile and Run
 

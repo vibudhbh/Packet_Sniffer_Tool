@@ -108,7 +108,7 @@ def print_packet_summary(index, pkt):
             index (int): Sequential number of the packet (for display).
             pkt (scapy.packet.Packet): The packet to summarize.
     """
-    print(f"\nPacket #{index}")
+    print(f"\nPacket #{index} (Wireshark Packet Number)")
     print("-"*60)
     # Packet size
     print(f"Packet size: {len(pkt)} bytes")
@@ -186,12 +186,12 @@ def main():
     if args.count and args.count > 0:
         packets = packets[:args.count]
 
-    #4 Filter packets
-    filtered_packets = [pkt for pkt in packets if packet_filter(pkt, args)]
+    #4 Apply filters but retain original packet numbers
+    filtered_packets = [(i + 1, pkt) for i, pkt in enumerate(packets) if packet_filter(pkt, args)]
 
-    #5 Print packet summary for each packet that passes the filter
-    for index, pkt in enumerate(filtered_packets, start=1):
-        print_packet_summary(index, pkt)
+    #5 Print summary of packets that passed the filter
+    for original_pkt_no, pkt in filtered_packets:
+        print_packet_summary(original_pkt_no, pkt)
 
 if __name__ == "__main__":
     main()
