@@ -1,0 +1,11 @@
+a2172bf - 2025-02-04 : Added Code Documentation generated using Sphinx and finalised assignment report.
+b1883ca - 2025-02-04 : Fixed pktsniffer.py to print wireshark packet number after filtering.
+0fe72a2 - 2025-02-04 : Updated readme.md
+fc16640 - 2025-02-03 : Generated documentation using sphinx.
+7470523 - 2025-02-03 : Generated documentation using sphinx.
+6ea7a61 - 2025-02-03 : Added function docstrings and refined comments
+b4b5ba5 - 2025-02-02 : Updated main function to filter and read packets if specified. Implemented apply filter function to filter packets.
+2a83fb7 - 2025-02-01 : Implemented basic packet sniffer program to read a pcap file and summarize the packet.
+d40bfbc - 2025-01-31 : Generated requirements.txt and creater pktsniffer python file.
+ab0c42b - 2025-01-31 : Added Capture.pcap file generated using wireshark
+1bcfba3 - 2025-01-31 : Initial Commit
